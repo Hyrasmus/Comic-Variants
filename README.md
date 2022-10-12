@@ -1,2 +1,2 @@
 # Comic-Website
-Search for Marvel comic issues 
+Search for Marvel comics
