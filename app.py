@@ -34,7 +34,7 @@ def get_character(PUBLIC_KEY, PRIVATE_KEY, id, name):
         extension = resp["data"]["results"]["thumbnail"]["extension"]
         # Format URL for image from resp.
         thumbnail = f"{thumbnail}/landscape_incredible.{extension}"
-        return {"id": id, "name": name, "description": description, "thumbnail": thumbnail}
+        return {"name": name, "description": description, "thumbnail": thumbnail}
     except IndexError:
         return render_template("index.html")
 
