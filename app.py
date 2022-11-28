@@ -12,7 +12,7 @@ try:
 except ImportError as err:
     print(f"Failed to import required packages: {err}")
 
-def get_character(PUBLIC_KEY, PRIVATE_KEY, id, name):
+def get_character(PUBLIC_KEY, PRIVATE_KEY, name):
     # Generate timestamp required for Marvel API Authentication.
     now = pendulum.now('Europe/London')
     now = now.to_iso8601_string()
@@ -27,7 +27,6 @@ def get_character(PUBLIC_KEY, PRIVATE_KEY, id, name):
     resp = requests.get(endpoint, params={"apikey": PUBLIC_KEY, "ts": now, "hash": m.hexdigest()}).json()
     # Collect required data from resp.
     try:
-        id = resp["data"]["results"]["id"]
         name = resp["data"]["results"]["name"]
         description = resp["data"]["results"]["description"]
         thumbnail = resp["data"]["results"]["thumbnail"]["path"]
