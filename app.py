@@ -1,6 +1,3 @@
-from urllib3 import connection_from_url
-
-
 try:
     import hashlib
 
@@ -23,14 +20,14 @@ def get_character(PUBLIC_KEY, PRIVATE_KEY, name):
     m.update(PRIVATE_KEY.encode('utf8'))
     m.update(PUBLIC_KEY.encode('utf8'))
 
-    endpoint = f"https://gateway.marvel.com:443/v1/public/characters?nameStartsWith={name}"
+    endpoint = f"https://gateway.marvel.com:443/v1/public/characters?nameStartsWith={name}&limit=1"
     resp = requests.get(endpoint, params={"apikey": PUBLIC_KEY, "ts": now, "hash": m.hexdigest()}).json()
     # Collect required data from resp.
     try:
-        name = resp["data"]["results"]["name"]
-        description = resp["data"]["results"]["description"]
-        thumbnail = resp["data"]["results"]["thumbnail"]["path"]
-        extension = resp["data"]["results"]["thumbnail"]["extension"]
+        name = resp["data"]["results"][0]["name"]
+        description = resp["data"]["results"][0]["description"]
+        thumbnail = resp["data"]["results"][0]["thumbnail"]["path"]
+        extension = resp["data"]["results"][0]["thumbnail"]["extension"]
         # Format URL for image from resp.
         thumbnail = f"{thumbnail}/landscape_incredible.{extension}"
         return {"name": name, "description": description, "thumbnail": thumbnail}
