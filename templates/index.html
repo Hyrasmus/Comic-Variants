@@ -23,14 +23,12 @@
         <div class="col-md-5 text-center">
           <label class="h2" for="search">Marvel Character Search</label>
           <input type="text" class="form-control" name="search" placeholder="Black Panther">
-          <small id="texthelp" class="form-text text-muted">Input a name above.</small>
+          <small id="texthelp" class="form-text text-muted">Input a name above hit enter.</small>
         </div>
       </div>
     </form>
     <div class="form-row justify-content-center">
-      <div class="col-md-2 text-center">
-        <button onclick="location.href='/comic/'">Search Comics</button>
-      </div>
+      <button onclick="location.href='/comic/'">Search Comics</button>
     </div>
     {% if data %}
       <div class="row">
